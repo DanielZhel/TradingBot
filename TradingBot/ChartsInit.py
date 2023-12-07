@@ -2,10 +2,10 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import TradingLogic as tl
 
-def ChartsInit(instData1, instData2, macdValues, emaValues, stochValues):
+def ChartsInit(instData1, instData2, macdValues, emaValues, stochValues,i, instruments, tf1, tf2):
     # Создание фигуры
-    fig = make_subplots(rows=2,cols=2, shared_xaxes=True,  vertical_spacing=0.01, row_heights=[0.8, 0.2])
-    fig.update_layout(bargap=0.2)
+    fig = make_subplots(rows=2,cols=2, shared_xaxes=True,  vertical_spacing=0.01, row_heights=[0.8, 0.2],  subplot_titles=(tf1, tf2))
+    fig.update_layout(bargap=0.2, title=instruments[i], title_font_size=25, title_font_color = "purple")
 
     # Трейсы для MACD
     macd_trace = go.Scatter(y = macdValues[0][0], x = instData1['time'], line=dict(color='dodgerblue', width=1))
