@@ -15,4 +15,5 @@ def GetMACDValues(instData):
 
 def GetEMAValues(instData, period):
     a = talib.EMA(np.array(instData['close']), period)
-    return a, period
+    T = instData['time']
+    return a, period, T

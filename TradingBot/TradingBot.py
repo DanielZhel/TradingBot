@@ -19,8 +19,8 @@ instruments1= ["LOOKS-USDT",
                "LTC-USDT", 
                "DOT-USDT"]
 # Временной интервал
-firstTF = "1H"
-secondTF = "15m"
+firstTF = "1W"
+secondTF = "2D"
 emaPeriod = 26
 
 for i in range(len(instruments1)):
