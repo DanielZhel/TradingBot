@@ -1,19 +1,19 @@
 import talib
 import numpy as np
 
-def GetStochValues(instData):
-    a = talib.STOCH(np.array(instData['high']),np.array(instData['low']), np.array(instData['close']))
+def get_stoch_values(inst_data):
+    a = talib.STOCH(np.array(inst_data['high']),np.array(inst_data['low']), np.array(inst_data['close']))
     K = a[0]
     D = a[1]
-    T = instData['time']
+    T = inst_data['time']
     return K,D,T
 
-def GetMACDValues(instData):
-    a = talib.MACD(np.array(instData['close']))
-    T = instData['time']
+def get_macd_values(inst_data):
+    a = talib.MACD(np.array(inst_data['close']))
+    T = inst_data['time']
     return a, T
 
-def GetEMAValues(instData, period):
-    a = talib.EMA(np.array(instData['close']), period)
-    T = instData['time']
+def get_ema_values(inst_data, period):
+    a = talib.EMA(np.array(inst_data['close']), period)
+    T = inst_data['time']
     return a, period, T

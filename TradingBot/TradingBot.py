@@ -1,32 +1,25 @@
 import ChartsInit as init
 import Data as data
-import Indicators as ind
+import Indicators as indicators
 
-# instruments1= ["XRP-USDT",
-#                "SOL-USDT",
-#                "ADA-USDT", 
-#                "CRO-USDT", 
-#                "MATIC-USDT", 
-#                "LOOKS-USDT",
-#                "ETH-USDT", 
-#                "FIL-USDT", 
-#                "LTC-USDT", 
-#                "DOT-USDT"]
-# instruments1= ["XRP-USDT"]
-instruments1= ["LOOKS-USDT",
-               "ETH-USDT", 
-               "FIL-USDT", 
-               "LTC-USDT", 
-               "DOT-USDT"]
-# Временной интервал
-firstTF = "1W"
-secondTF = "2D"
-emaPeriod = 26
-
-for i in range(len(instruments1)):
-    instData1 = data.InstrumentData(instruments1[i], firstTF, 100)
-    instData2 = data.InstrumentData(instruments1[i], secondTF, 300)
-    emaValues = ind.GetEMAValues(instData1, 26)
-    macdValues  = ind.GetMACDValues(instData1)
-    stochValues = ind.GetStochValues(instData2)
-    init.ChartsInit(instData1, instData2, macdValues, emaValues, stochValues, i, instruments1, firstTF, secondTF)
+def bot_start(inst_list,frist_timeframe,second_timeframe,ema_period,high_stoch_level,low_stoch_level,up_range_ema,lo_range_ema):
+  
+    for i in range(len(inst_list)):
+        inst_data1= data.get_instrument_data(inst_list[i],frist_timeframe, 100)
+        inst_data2= data.get_instrument_data(inst_list[i],second_timeframe, 300)
+        ema_values= indicators.get_ema_values(inst_data1,ema_period)
+        macd_values= indicators.get_macd_values(inst_data1)
+        stoch_values= indicators.get_stoch_values(inst_data2)
+        init.charts_init(inst_data1, 
+                        inst_data2, 
+                        macd_values, 
+                        ema_values, 
+                        stoch_values, 
+                        i, 
+                        inst_list, 
+                        frist_timeframe, 
+                        second_timeframe,
+                        high_stoch_level,
+                        low_stoch_level,
+                        up_range_ema,
+                        lo_range_ema)

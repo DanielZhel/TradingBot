@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>840739e8-4788-4dd6-8922-fd56fe798ed8</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>TradingBot.py</StartupFile>
+    <StartupFile>SettingsWindow.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,10 +24,12 @@
     <Compile Include="ChartsInit.py" />
     <Compile Include="Data.py" />
     <Compile Include="Indicators.py" />
+    <Compile Include="InstrumentsList.py" />
     <Compile Include="OKEXAPI\client.py" />
     <Compile Include="OKEXAPI\consts.py" />
     <Compile Include="OKEXAPI\MarketData.py" />
     <Compile Include="ReduceRepeat.py" />
+    <Compile Include="SettingsWindow.py" />
     <Compile Include="TradingBot.py" />
     <Compile Include="OKEXAPI\utils.py" />
     <Compile Include="TradingLogic.py" />

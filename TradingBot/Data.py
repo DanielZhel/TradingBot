@@ -2,16 +2,14 @@ import datetime
 from OKEXAPI.MarketData import MarketAPI
 import pandas as pd
 
-def InstrumentData (instId, bar, limit):
-    marketData = MarketAPI(flag="0", domain="https://www.okx.com", debug = True)
-    cs = marketData.get_candlesticks(instId= instId,bar=bar, limit=limit)
+def get_instrument_data (instId, bar, limit):
+    market_data = MarketAPI(flag="0", domain="https://www.okx.com", debug = True)
+    cs = market_data.get_candlesticks(instId= instId,bar=bar, limit=limit)
     hist= []
-    ts = []
     i= 0
     while i<limit-1:
         ts  = float(cs["data"][i][0])/1000
         time = datetime.datetime.fromtimestamp(ts)
-        # ts.append(time)
         op = float((cs["data"])[i][1])
         hi = float((cs["data"])[i][2])
         lo = float((cs["data"])[i][3])
@@ -22,9 +20,9 @@ def InstrumentData (instId, bar, limit):
         i = i+1
     
     hist.reverse()
-    instData= pd.DataFrame(hist)
+    inst_data= pd.DataFrame(hist)
     
-    return instData
+    return inst_data
 
 
 
