@@ -1,53 +1,66 @@
-
-from numpy import size
-import TradingBot as tb
-from tkinter import *
-from tkinter import ttk
 import InstrumentsList as lst
+from tkinter import *
+from tkinter import font
+import TradingBot as tb
 
 instruments1 = lst.get_instruments() 
 instruments=[]
 choosen_insts = [] 
 
 
-root = Tk()
-root.title("Three Screen Strategy Test")
-root.geometry("500x250") 
+window = Tk()
+window.title("Three Screen Strategy Test")
+window.geometry("400x400")
+window.resizable(width=FALSE, height=FALSE)
 
-firstlabel = ttk.Label(text="First TimeFrame")
-firstlabel.pack(anchor=E, padx=2, pady=2)
-entry_firstTF = ttk.Entry()
-entry_firstTF.pack(anchor=E, padx=1, pady=1)
+font1 = font.Font(family= "Arial", size=9, weight="bold", slant="roman")
 
-secondlabel = ttk.Label(text="Second TimeFrame")
-secondlabel.pack(anchor=E, padx=2, pady=2)
-entry_secondTF = ttk.Entry()
-entry_secondTF.pack(anchor=E, padx=2, pady=2)
+frame = Frame(window)
+frame.place(x=10,y=10, width=150, height=300)
 
-ema_period_label = ttk.Label(text="EMA Period")
-ema_period_label.pack(anchor=E, padx=2, pady=2)
-entry_ema_period = ttk.Entry()
-entry_ema_period.pack(anchor=E, padx=2, pady=2)
+scrollbar=Scrollbar(frame, orient="vertical")
+scrollbar.pack(fill=BOTH, side=RIGHT)
 
-high_stoch_label = ttk.Label(text="Upper Stoch Zone")
-high_stoch_label.pack(anchor=E, padx=2, pady=2)
-high_stoch = ttk.Entry()
-high_stoch.pack(anchor=E, padx=2, pady=2)
+inst_text =Text(frame, yscrollcommand=scrollbar.set, background="lightblue")
+inst_text.pack(anchor=NW)
+inst_text.configure(state=DISABLED, cursor='')
+inst_text.configure(yscrollcommand=scrollbar.set)
+scrollbar.config(command=inst_text.yview)
 
-low_stoch_label = ttk.Label(text="Lower Stoch Zone")
-low_stoch_label.pack(anchor=E, padx=2, pady=2)
-low_stoch = ttk.Entry()
-low_stoch.pack(anchor=E, padx=2, pady=2)
+firstlabel = Label(text="First TimeFrame", font=font1)
+firstlabel.place(x=250, y =0)
+entry_firstTF = Entry()
+entry_firstTF.place(x=250, y= 20)
 
-up_range_label = ttk.Label(text="EMA range for LONG(%)")
-up_range_label.pack(anchor=E, padx=2, pady=2)
-up_range = ttk.Entry()
-up_range.pack(anchor=E, padx=2, pady=2)  
+secondlabel = Label(text="Second TimeFrame", font=font1)
+secondlabel.place( x=250, y =50)
+entry_secondTF = Entry()
+entry_secondTF.place(x=250, y =70)
 
-lo_range_label = ttk.Label(text="EMA range for SHORT(%)")
-lo_range_label.pack(anchor=E, padx=2, pady=2)
-lo_range = ttk.Entry()
-lo_range.pack(anchor=E, padx=2, pady=2)  
+ema_period_label = Label(text="EMA Period", font=font1)
+ema_period_label.place( x=250, y =100)
+entry_ema_period = Entry()
+entry_ema_period.place( x=250, y =120)
+
+high_stoch_label = Label(text="Upper Stoch Level", font=font1)
+high_stoch_label.place(x=250, y =150)
+high_stoch = Entry()
+high_stoch.place(x=250, y =170)
+
+low_stoch_label = Label(text="Lower Stoch Level", font=font1)
+low_stoch_label.place(x=250, y=200)
+low_stoch = Entry()
+low_stoch.place(x=250, y=220)
+
+up_range_label = Label(text="EMA range for LONG(%)", font=font1)
+up_range_label.place( x=250, y=250)
+up_range = Entry()
+up_range.place(x=250, y=270)  
+
+lo_range_label = Label(text="EMA range for SHORT(%)", font=font1)
+lo_range_label.place(x=250, y=300)
+lo_range = Entry()
+lo_range.place(x=250, y=330)  
 
 
 
@@ -72,17 +85,25 @@ def bot_start():
                  low_stoch_level,
                  up_range_ema,
                  lo_range_ema)
-    
+  
 for i in range(len(instruments1)):
+    
     inst = StringVar()
-    check_box = ttk.Checkbutton(text=instruments1[i], variable=inst,onvalue=instruments1[i], offvalue="")
-    check_box.pack(padx=6, pady=6, anchor=NW)
+    check_box = Checkbutton(
+                                text=instruments1[i], 
+                                variable=inst,
+                                onvalue=instruments1[i], 
+                                offvalue="",background="lightblue")
+    inst_text.window_create(END, window=check_box)
+    inst_text.insert(END, '\n')
     instruments.append(inst)
     
-button = ttk.Button(text="Start", command=bot_start)
-button.pack(side=BOTTOM)
+    
+button = Button(text="Start", command=bot_start)
+button.place(x=160,y=360)
 
-root.mainloop()
+scrollbar.config(command=inst_text.yview)
+window.mainloop()
 
 
 

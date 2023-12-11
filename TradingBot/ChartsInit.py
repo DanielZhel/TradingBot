@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import TradingLogic as tl
+import ThreeScreenTradingLogic as tl
 
 def charts_init(inst_data1, 
                inst_data2, 

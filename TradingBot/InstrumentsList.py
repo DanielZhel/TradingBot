@@ -10,7 +10,13 @@ def get_instruments():
                    "FIL-USDT", 
                    "LTC-USDT", 
                    "DOT-USDT",
-                   ""] 
+                   "CHZ-USDT",
+                   "CETUS-USDT",
+                   "LINK-USDT",
+                   "TRB-USDT",
+                   "APE-USDT",
+                   "1INCH-USDT"
+                   ] 
     return instruments
 
 

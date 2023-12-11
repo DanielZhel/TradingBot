@@ -32,7 +32,7 @@
     <Compile Include="SettingsWindow.py" />
     <Compile Include="TradingBot.py" />
     <Compile Include="OKEXAPI\utils.py" />
-    <Compile Include="TradingLogic.py" />
+    <Compile Include="ThreeScreenTradingLogic.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="OKEXAPI\exceptions.pyc" />

@@ -1,10 +1,7 @@
 import ReduceRepeat as rr
-import Indicators as indicators
 
 # Метод рассчитывает зоны и стоп для шорта МАКД и стохаст
 def get_short_entry_zone_macd(inst_data1,inst_data2, high_stoch_level, stoch_values,macd_values):
-    # stoch_values = indicators.get_stoch_values(inst_data2)
-    # macd_values =  indicators.get_macd_values(inst_data1)
     short_entry = []
     # Все значения МАКД
     for j in range (len(macd_values[0][0])-1):
@@ -39,8 +36,6 @@ def get_short_entry_zone_macd(inst_data1,inst_data2, high_stoch_level, stoch_val
 
 # Метод рассчитывает зоны и стоп для лонга МАКД и стохаст
 def get_long_entry_zone_macd(inst_data1, inst_data2,low_stoch_level,stoch_values,macd_values):
-    # stoch_values = indicators.get_stoch_values(inst_data2)
-    # macd_values =  indicators.get_macd_values(inst_data1)
     long_entry = []
      # Все значения МАКД
     for j in range (len(macd_values[0][0])-1):
@@ -75,8 +70,6 @@ def get_long_entry_zone_macd(inst_data1, inst_data2,low_stoch_level,stoch_values
 
 # Метод рассчитывает зоны и стоп для лонга ЕМА и стохаст
 def get_long_entry_zone_ema(inst_data1, inst_data2,low_stoch_level,up_range_ema,stoch_values, ema_values):
-    # stoch_values = indicators.get_stoch_values(inst_data2)
-    # ema_values =  indicators.get_ema_values(inst_data1,ema_period)
     long_entry = []
     
     # Все значения ЕМА
@@ -115,8 +108,6 @@ def get_long_entry_zone_ema(inst_data1, inst_data2,low_stoch_level,up_range_ema,
 
 # Метод рассчитывает зоны и стоп для шорта ЕМА и стохаст
 def get_short_entry_zone_ema(inst_data1, inst_data2,high_stoch_level,lo_range_ema,stoch_values,  ema_values):
-    # stoch_values = indicators.get_stoch_values(inst_data2)
-    # ema_values =  indicators.get_ema_values(inst_data1,ema_period)
     short_entry = []
     # Все значения ЕМА
     for j in range (len(ema_values[0])-1):
@@ -153,9 +144,6 @@ def get_short_entry_zone_ema(inst_data1, inst_data2,high_stoch_level,lo_range_em
 
 # Метод рассчитывает зоны и стоп для шорта ЕМА МАКД и стохаст    
 def get_short_entry_zone_macdema(inst_data1,inst_data2,high_stoch_level,lo_range_ema,stoch_values,macd_values,ema_values):
-    # stoch_values = indicators.get_stoch_values(inst_data2)
-    # macd_values =  indicators.get_macd_values(inst_data1)
-    # ema_values = indicators.get_ema_values(inst_data1,ema_period)
     short_entry = []
     # Все значения МАКД
     for j in range (len(macd_values[0][0])-1):
@@ -183,7 +171,7 @@ def get_short_entry_zone_macdema(inst_data1,inst_data2,high_stoch_level,lo_range
                             stop_length = []
                             stop =[]
                             # Добавление цены и времени для отображения линии стопа
-                            for j in range(10):
+                            for j in range(5):
                                 stop_length.append(inst_data2['time'][i+j])
                                 stop.append(stopt)
                             
@@ -195,9 +183,6 @@ def get_short_entry_zone_macdema(inst_data1,inst_data2,high_stoch_level,lo_range
 
 # Метод рассчитывает зоны и стоп для лонга ЕМА МАКД и стохаст
 def get_long_entry_zone_macdema(inst_data1, inst_data2,low_stoch_level, up_range_ema,stoch_values, macd_values,ema_values):
-    # stoch_values = indicators.get_stoch_values(inst_data2)
-    # macd_values =  indicators.get_macd_values(inst_data1)
-    # ema_values = indicators.get_ema_values(inst_data1,ema_period)
     long_entry = []
     # Все значения МАКД
     for j in range (len(macd_values[0][0])-1):

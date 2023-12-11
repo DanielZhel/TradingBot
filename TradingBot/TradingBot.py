@@ -1,7 +1,6 @@
 import ChartsInit as init
 import Data as data
 import Indicators as indicators
-
 def bot_start(inst_list,frist_timeframe,second_timeframe,ema_period,high_stoch_level,low_stoch_level,up_range_ema,lo_range_ema):
   
     for i in range(len(inst_list)):
