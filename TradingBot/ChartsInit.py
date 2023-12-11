@@ -14,7 +14,8 @@ def charts_init(inst_data1,
                high_stoch_level, 
                low_stoch_value,
                up_range_ema,
-               lo_range_ema):
+               lo_range_ema,
+               risk):
     # Создание фигуры
     fig = make_subplots(rows=2,cols=2, shared_xaxes=True,  vertical_spacing=0.01, row_heights=[0.8, 0.2],  subplot_titles=(tf1, tf2))
     fig.update_layout(bargap=0.2, title=instruments[i], title_font_size=25, title_font_color = "purple")
@@ -87,8 +88,8 @@ def charts_init(inst_data1,
             )    
         )
 
-    tl.get_short_signal(inst_data1, inst_data2, fig, go, high_stoch_level,lo_range_ema,stoch_values, macd_values,ema_values)
-    tl.get_long_signal(inst_data1, inst_data2, fig, go, low_stoch_value,up_range_ema,stoch_values, macd_values,ema_values)
+    tl.get_short_signal(inst_data1, inst_data2, fig, go, high_stoch_level,lo_range_ema,stoch_values, macd_values,ema_values,risk)
+    tl.get_long_signal(inst_data1, inst_data2, fig, go, low_stoch_value,up_range_ema,stoch_values, macd_values,ema_values,risk)
     fig.show()
 
 

@@ -28,6 +28,7 @@
     <Compile Include="OKEXAPI\client.py" />
     <Compile Include="OKEXAPI\consts.py" />
     <Compile Include="OKEXAPI\MarketData.py" />
+    <Compile Include="PositionImit.py" />
     <Compile Include="ReduceRepeat.py" />
     <Compile Include="SettingsWindow.py" />
     <Compile Include="TradingBot.py" />
