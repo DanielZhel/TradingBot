@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="ChartsInit.py" />
     <Compile Include="Data.py" />
+    <Compile Include="GetStat.py" />
     <Compile Include="Indicators.py" />
     <Compile Include="InstrumentsList.py" />
     <Compile Include="OKEXAPI\client.py" />

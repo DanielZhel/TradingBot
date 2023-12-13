@@ -1,12 +1,13 @@
+import statistics
 import InstrumentsList as lst
 from tkinter import *
 from tkinter import font
 import TradingBot as tb
+import GetStat as gs
 
 instruments1 = lst.get_instruments() 
 instruments=[]
 choosen_insts = [] 
-
 
 window = Tk()
 window.title("Three Screen Strategy Test")
@@ -67,7 +68,6 @@ rm_label.place(x=250, y=350)
 rm = Entry()
 rm.place(x=250, y=370) 
 
-
 def bot_start():
     choosen_insts.clear()
     for i in range(len(instruments)):
@@ -101,7 +101,7 @@ def bot_start():
                  up_range_ema,
                  lo_range_ema,
                  risk)
-  
+    
 for i in range(len(instruments1)):
     
     inst = StringVar()
@@ -114,7 +114,6 @@ for i in range(len(instruments1)):
     inst_text.insert(END, '\n')
     instruments.append(inst)
     
-    
 button = Button(text="Start", command=bot_start)
 button.place(x=160,y=360)
 
@@ -122,6 +121,7 @@ scrollbar.config(command=inst_text.yview)
 window.mainloop()
 
 
+    
 
 
 

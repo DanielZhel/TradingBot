@@ -1,22 +1,5 @@
-from tkinter import Entry
-from turtle import position
-import ThreeScreenTradingLogic as tl
-import Data as data
-import Indicators as indicators
-
-
-
-
-# inst_data1= data.get_instrument_data("XRP-USDT","2H", 100)
-# inst_data2= data.get_instrument_data("XRP-USDT","30m", 300)
-# ema_values= indicators.get_ema_values(inst_data1,26)
-# macd_values= indicators.get_macd_values(inst_data1)
-# stoch_values= indicators.get_stoch_values(inst_data2)
-
-# long_entry=tl.get_long_entry_zone_macdema(inst_data1, inst_data2,30,5, stoch_values, macd_values, ema_values)      
-
 def get_long_position(long_entry, inst_data2,risk):
-    
+    long_stat=[]
     positions=[]
     pos_info = []
     if(len(long_entry)>0):
@@ -38,18 +21,19 @@ def get_long_position(long_entry, inst_data2,risk):
                     tm = inst_data2['time'][j]
                     p = [tp,tm]
                     positions.append(p)
-                    print("TakeProfit")
+                    long_stat.append(1)
                     break
                 elif(inst_data2['low'][j]<pos_info[i][2]<inst_data2['high'][j]):
                     sl = pos_info[i][2]
                     tm = inst_data2['time'][j]
                     p = [sl,tm]
-                    print("Stop")
+                    long_stat.append(0)
                     positions.append(p)
                     break
-    return positions
+    return positions, long_stat
 
 def get_short_position(short_entry, inst_data2,risk):
+    short_stat=[]
     positions=[]
     pos_info = []
     if(len(short_entry)>0):
@@ -70,17 +54,17 @@ def get_short_position(short_entry, inst_data2,risk):
                     tp = pos_info[i][0]
                     tm = inst_data2['time'][j]
                     p = [tp,tm]
+                    short_stat.append(1)
                     positions.append(p)
-                    print("TakeProfit")
                     break
                 elif(inst_data2['low'][j]<pos_info[i][2]<inst_data2['high'][j]):
                     sl = pos_info[i][2]
                     tm = inst_data2['time'][j]
                     p = [sl,tm]
-                    print("Stop")
+                    short_stat.append(0)
                     positions.append(p)
                     break
-    return positions
+    return positions, short_stat
 
     
 
