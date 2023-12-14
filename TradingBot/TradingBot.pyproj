@@ -37,9 +37,11 @@
     <Compile Include="ThreeScreenTradingLogic.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Image\help.jpg" />
     <Content Include="OKEXAPI\exceptions.pyc" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Image\" />
     <Folder Include="OKEXAPI\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

@@ -143,7 +143,14 @@ import PositionImit as pos
 #     return short_entry
 
 # Метод рассчитывает зоны и стоп для шорта ЕМА МАКД и стохаст    
-def get_short_positions_macdema(inst_data1,inst_data2,high_stoch_level,lo_range_ema,stoch_values,macd_values,ema_values):
+def get_short_positions_macdema(inst_data2,
+                                high_stoch_level,
+                                lo_range_ema,
+                                stoch_values,
+                                macd_values,
+                                ema_values,
+                                high_stop_percent,
+                                min_stop_percent):
     short_entry = []
     # Все значения МАКД
     for j in range (len(macd_values[0][0])-1):
@@ -170,7 +177,8 @@ def get_short_positions_macdema(inst_data1,inst_data2,high_stoch_level,lo_range_
                                              inst_data2['high'][i-3]))
                             stop_length = []
                             stop =[]
-                            if ((1-(entry_price/stopt))*100 > 0.3 ):
+                            stopt = stopt+(stopt*high_stop_percent/100)
+                            if ((1-(entry_price/stopt))*100 > min_stop_percent):
                             # Добавление цены и времени для отображения линии стопа
                                 for j in range(2):
                                     stop_length.append(inst_data2['time'][i+j])
@@ -183,7 +191,14 @@ def get_short_positions_macdema(inst_data1,inst_data2,high_stoch_level,lo_range_
     return short_entry    
 
 # Метод рассчитывает зоны и стоп для лонга ЕМА МАКД и стохаст
-def get_long_positions_macdema(inst_data1, inst_data2,low_stoch_level, up_range_ema,stoch_values, macd_values,ema_values):
+def get_long_positions_macdema(inst_data2,
+                               low_stoch_level, 
+                               up_range_ema,
+                               stoch_values, 
+                               macd_values,
+                               ema_values,
+                               low_stop_percent,
+                               min_stop_percent):
     long_entry = []
     # Все значения МАКД
     for j in range (len(macd_values[0][0])-1):
@@ -207,9 +222,10 @@ def get_long_positions_macdema(inst_data1, inst_data2,low_stoch_level, up_range_
                                              inst_data2['low'][i-1],
                                              inst_data2['low'][i-2],
                                              inst_data2['low'][i-3]))
+                            stopt = stopt-(stopt*low_stop_percent/100)
                             stop_length = []
                             stop =[]
-                            if ((1-(stopt/entry_price))*100 > 0.3 ):
+                            if ((1-(stopt/entry_price))*100 > min_stop_percent ):
                                 for j in range(2):
                                     stop_length.append(inst_data2['time'][i+j])
                                     stop.append(stopt)
@@ -223,9 +239,27 @@ def get_long_positions_macdema(inst_data1, inst_data2,low_stoch_level, up_range_
     return long_entry  
 
 # Метод строит на графике точки входа и стоп для шорта
-def get_short_signal(inst_data1, inst_data2,fig, go, high_stoch_value, lo_range_ema, stoch_values, macd_values, ema_values,risk):
-    short_entry = get_short_positions_macdema(inst_data1, inst_data2,high_stoch_value,lo_range_ema, stoch_values, macd_values, ema_values)
-    positions_stat = pos.get_short_position(short_entry, inst_data2,risk)
+def get_short_signal(inst_data2,
+                     fig, 
+                     go, 
+                     high_stoch_value, 
+                     lo_range_ema, 
+                     stoch_values, 
+                     macd_values, 
+                     ema_values,
+                     risk,
+                     high_stop_percent,
+                     min_stop_percent):
+    short_entry = get_short_positions_macdema(inst_data2,
+                                              high_stoch_value,
+                                              lo_range_ema, 
+                                              stoch_values, 
+                                              macd_values, 
+                                              ema_values,
+                                              high_stop_percent,
+                                              min_stop_percent)
+    positions_stat = pos.get_short_position(short_entry, 
+                                            inst_data2,risk)
     for i in range(len(short_entry)):
         fig.add_trace(go.Scatter(
             x=[short_entry[i][3]],
@@ -268,8 +302,25 @@ def get_short_signal(inst_data1, inst_data2,fig, go, high_stoch_value, lo_range_
 
 
 # Метод строит на графике точки входа и стоп для лонга        
-def get_long_signal(inst_data1,inst_data2,fig,go,low_stoch_value,up_range_ema, stoch_values, macd_values, ema_values,risk):
-    long_entry = get_long_positions_macdema(inst_data1, inst_data2,low_stoch_value,up_range_ema,stoch_values, macd_values, ema_values)
+def get_long_signal(inst_data2,
+                    fig,
+                    go,
+                    low_stoch_value,
+                    up_range_ema, 
+                    stoch_values, 
+                    macd_values, 
+                    ema_values,
+                    risk,
+                    low_stop_percent,
+                    min_stop_percent):
+    long_entry = get_long_positions_macdema(inst_data2,
+                                            low_stoch_value,
+                                            up_range_ema,
+                                            stoch_values, 
+                                            macd_values, 
+                                            ema_values,
+                                            low_stop_percent,
+                                            min_stop_percent)
     positions_stat = pos.get_long_position(long_entry, inst_data2,risk)
     for i in range(len(long_entry)):
         fig.add_trace(go.Scatter(

@@ -15,7 +15,18 @@ def get_instruments():
                    "LINK-USDT",
                    "TRB-USDT",
                    "APE-USDT",
-                   "1INCH-USDT"
+                   "1INCH-USDT",
+                   "AVAX-USDT",
+                   "TRX-USDT",
+                   "UNI-USDT",
+                   "BCH-USDT",
+                   "ATOM-USDT",
+                   "NEAR-USDT",
+                   "ALGO-USDT",
+                   "AAVE-USDT",
+                   "FLOW-USDT",
+                   "TRB-USDT"
+                   
                    ] 
     return instruments
 
