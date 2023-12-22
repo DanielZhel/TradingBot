@@ -25,7 +25,24 @@ def get_instruments():
                    "ALGO-USDT",
                    "AAVE-USDT",
                    "FLOW-USDT",
-                   "TRB-USDT"
+                   "TRB-USDT",
+                   "ALPHA-USDT",
+                   "APT-USDT",
+                   "BADGER-USDT",
+                   "BAL-USDT",
+                   "CELR-USDT",
+                   "COMP-USDT",
+                   "CTC-USDT",
+                   "DASH-USDT",
+                   "FLOW-USDT",
+                   "GMX-USDT",
+                   "OKB-USDT",
+                   "INJ-USDT",
+                   "WLD-USDT",
+                   "TON-USDT",
+                   "XLM-USDT",
+                   "RNDR-USDT",
+                   "EGLD-USDT"
                    
                    ] 
     return instruments

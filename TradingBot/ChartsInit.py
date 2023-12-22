@@ -89,7 +89,8 @@ def charts_init(inst_data1,
             rangeslider=dict(
                 visible=False
                 )
-            )    
+            )
+            
         )
 
     short_stat=tl.get_short_signal(inst_data2, 

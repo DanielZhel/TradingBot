@@ -5,7 +5,7 @@ def get_long_position(long_entry, inst_data2,risk):
     if(len(long_entry)>0):
         for i in range(len(long_entry)):
             entry = long_entry[i][0]
-            stop = long_entry[i][4][0]
+            stop = long_entry[i][4]
             stop_percent= abs(100-(stop*100)/entry)
             take_percent = stop_percent*risk/100
             take = entry*take_percent + entry
@@ -39,7 +39,7 @@ def get_short_position(short_entry, inst_data2,risk):
     if(len(short_entry)>0):
         for i in range(len(short_entry)):
             entry = short_entry[i][0]
-            stop = short_entry[i][4][0]
+            stop = short_entry[i][4]
             stop_percent= abs(100-(stop*100)/entry)
             take_percent = stop_percent*risk/100
             take = entry-entry*take_percent

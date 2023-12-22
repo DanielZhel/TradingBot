@@ -8,11 +8,8 @@ instruments1 = lst.get_instruments()
 instruments=[]
 choosen_insts = [] 
 
-
-
-
 window = Tk()
-window.title("Three Screen Strategy Test")
+window.title("Three Screen Strategy Test(v2)")
 window.geometry("750x400")
 window.resizable(width=FALSE, height=FALSE)
 window["bg"]="linen"
@@ -39,13 +36,13 @@ inst_text.configure(state=DISABLED, cursor='')
 inst_text.configure(yscrollcommand=scrollbar.set)
 scrollbar.config(command=inst_text.yview)
 
-firstlabel = Label(text="1.First TimeFrame(2H)", font=font1)
+firstlabel = Label(text="1.First TimeFrame(1H)", font=font1)
 firstlabel['bg']="linen"
 firstlabel.place(x=180, y =0)
 entry_firstTF = Entry()
 entry_firstTF.place(x=180, y= 20)
 
-secondlabel = Label(text="2.Second TimeFrame(30m)", font=font1)
+secondlabel = Label(text="2.Second TimeFrame(15m)", font=font1)
 secondlabel.place( x=180, y =50)
 secondlabel['bg']="linen"
 entry_secondTF = Entry()
@@ -57,25 +54,25 @@ ema_period_label['bg']="linen"
 entry_ema_period = Entry()
 entry_ema_period.place( x=180, y =120)
 
-high_stoch_label = Label(text="4.Upper Stoch Level(80)", font=font1)
+high_stoch_label = Label(text="4.Upper Stoch Level(70)", font=font1)
 high_stoch_label.place(x=180, y =150)
 high_stoch_label['bg']="linen"
 high_stoch = Entry()
 high_stoch.place(x=180, y =170)
 
-low_stoch_label = Label(text="5.Lower Stoch Level(20)", font=font1)
+low_stoch_label = Label(text="5.Lower Stoch Level(30)", font=font1)
 low_stoch_label.place(x=180, y=200)
 low_stoch_label['bg']="linen"
 low_stoch = Entry()
 low_stoch.place(x=180, y=220)
 
-up_range_label = Label(text="6.EMA range for LONG(%)(3)", font=font1)
+up_range_label = Label(text="6.EMA range for LONG(%)(0.6)", font=font1)
 up_range_label.place( x=180, y=250)
 up_range_label['bg']="linen"
 up_range = Entry()
 up_range.place(x=180, y=270)  
 
-lo_range_label = Label(text="7.EMA range for SHORT(%)(3)", font=font1)
+lo_range_label = Label(text="7.EMA range for SHORT(%)(0.6)", font=font1)
 lo_range_label.place(x=180, y=300)
 lo_range_label['bg']="linen"
 lo_range = Entry()
@@ -113,22 +110,22 @@ def bot_start():
             choosen_insts.append(instruments[i].get()) 
      
     if(entry_firstTF.get() == ""):
-        first_timeframe = "2H"
+        first_timeframe = "1H"
     else:
         first_timeframe = entry_firstTF.get()
         
     if(entry_secondTF.get() == ""):
-        second_timeframe = "30m"
+        second_timeframe = "15m"
     else:
         second_timeframe = entry_secondTF.get()
         
     if(high_stoch.get()== ""):
-        high_stoch_level = 80
+        high_stoch_level = 70
     else:
         high_stoch_level = float(high_stoch.get())
         
     if(low_stoch.get()== ""):
-        low_stoch_level = 20
+        low_stoch_level = 30
     else:
         low_stoch_level = float(low_stoch.get())
     
@@ -138,12 +135,12 @@ def bot_start():
         ema_period = int(entry_ema_period.get())
 
     if(up_range.get()== ""):
-        up_range_ema = 3
+        up_range_ema = 0.6
     else:
         up_range_ema = float(up_range.get())
         
     if(lo_range.get()== ""):
-        lo_range_ema = 3
+        lo_range_ema = 0.6
     else:
         lo_range_ema = float(lo_range.get())
      
